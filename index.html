@@ -2,110 +2,97 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Praying for Saida's Success</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tell Me Your Name</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #87CEEB, #E0F7FA);
+            font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            overflow: hidden;
         }
         .container {
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            width: 80%;
+            max-width: 300px;
         }
         h1 {
-            color: #4A90E2;
-        }
-        .prayer {
-            font-style: italic;
             color: #333;
-            margin: 20px 0;
+            margin-bottom: 20px;
+            font-size: 24px;
         }
-        .emojis {
-            font-size: 36px;
-            margin: 20px 0;
-            animation: float 3s infinite ease-in-out;
+        .button {
+            padding: 12px 24px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        #yesButton {
+            background-color: #4CAF50;
+            color: white;
         }
-        .wishes {
-            font-weight: bold;
-            color: #4A90E2;
-            margin-top: 20px;
+        #yesButton:active {
+            background-color: #45a049;
+            transform: scale(0.95);
         }
-        .praying-figure {
-            width: 100px;
-            height: 120px;
-            margin: 20px auto;
-            position: relative;
-        }
-        .head {
-            width: 30px;
-            height: 30px;
-            background-color: #FFD700;
-            border-radius: 50%;
+        #noButton {
+            background-color: #f44336;
+            color: white;
             position: absolute;
-            top: 0;
-            left: 35px;
-        }
-        .body {
-            width: 60px;
-            height: 60px;
-            background-color: #1E90FF;
-            position: absolute;
-            top: 30px;
-            left: 20px;
-            border-radius: 30px 30px 0 0;
-        }
-        .arms {
-            width: 80px;
-            height: 40px;
-            border: 5px solid #1E90FF;
-            border-bottom: none;
-            border-radius: 40px 40px 0 0;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-        }
-        .legs {
-            width: 60px;
-            height: 30px;
-            background-color: #1E90FF;
-            position: absolute;
-            bottom: 0;
-            left: 20px;
-            border-radius: 0 0 15px 15px;
+            transition: all 0.2s ease;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Praying for Saida's Success</h1>
-        <p>Saida from Kazakhstan, met on Bottled 🇰🇿🍾</p>
-        <p class="prayer">"May Saida's interview be successful, her confidence shine, and her talents be recognized."</p>
-        <div class="praying-figure">
-            <div class="head"></div>
-            <div class="body"></div>
-            <div class="arms"></div>
-            <div class="legs"></div>
-        </div>
-        <div class="emojis">
-            🙏✨🍀🌟💪
-        </div>
-        <p>Sending positive vibes for your interview, Saida!</p>
-        <p class="wishes">Best wishes from Saurav ❤️</p>
+        <h1>Will you tell me your name?</h1>
+        <button id="yesButton" class="button" onclick="thankYou()">Yes</button>
     </div>
+    <button id="noButton" class="button">No</button>
+
+    <script>
+        const noButton = document.getElementById("noButton");
+
+        function moveButton() {
+            const maxX = window.innerWidth - noButton.offsetWidth;
+            const maxY = window.innerHeight - noButton.offsetHeight;
+            
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+            
+            noButton.style.left = newX + 'px';
+            noButton.style.top = newY + 'px';
+        }
+
+        function thankYou() {
+            alert("Thank you! Now go tell your friend your name in inbox.");
+        }
+
+        // Move the button initially and every 1000ms
+        moveButton();
+        setInterval(moveButton, 1000);
+
+        // Move the button when touched
+        noButton.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            moveButton();
+        });
+
+        // Prevent default touch behavior
+        document.body.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+    </script>
 </body>
 </html>
